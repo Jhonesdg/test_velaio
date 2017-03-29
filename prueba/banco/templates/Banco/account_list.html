@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Latest Accounts{% endblock %}
+
+{% block heading %}
+  <h2>Latest Accounts</h2>
+{% endblock %}
+
+{% block content %}
+  <ul class="list-unstyled">
+  {% for cuenta in cuentas %}
+    <li class="well well-sm">{% include "Banco/cuenta.html" %}</li>
+  {% empty %}
+    <li>No hay Cuentas. :(</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Edit profile
+{% endblock %}
+
+{% block heading %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <h2>
+    
+      Edit profile {{ request.user.username }}
+    
+  </h2>
+{% endblock %}
+
+{% block content %} 
+
+  <form action="{{ action_url }}" method="post" accept-charset="utf-8">
+    
+    {% csrf_token %}
+    <fieldset>
+        {{ form.non_field_errors }}
+        {% for field in form %}
+          {{ field.errors }}
+          <div id="id_{{ field.name }}" class="form-group"> 
+              <label for="id_{{ field.name }}" class="control-label">{{ field.label }}</label> 
+              <div class="controls "> 
+                {{ field }} 
+              </div> 
+            </div>
+          
+        {% endfor %}
+                         
+      </fieldset>
+    <input type="submit" class="btn btn-default" value="Save">
+  </form>
+  
+  <script type="text/javascript">
+
+        
+        
+        $('#id_name input').val('{{ request.user.first_name }}');
+        $('#id_lastname input').val('{{ request.user.last_name }}');
+        $('#id_email input').val('{{ request.user.email }}');
+        
+       
+        
+        $(':input').addClass('form-control');
+        $('.btn').removeClass('form-control');
+
+</script>
+{% endblock %}

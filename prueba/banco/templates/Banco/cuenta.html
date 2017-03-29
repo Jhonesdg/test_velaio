@@ -1,0 +1,11 @@
+<a class="lead">{{ cuenta.user }}</a>
+{% if cuenta.name %}
+  <br>{{ cuenta.name }}
+{% endif %}
+{% if cuenta.ammount %}
+  <br>Saldo disponible {{ cuenta.ammount }}
+{% endif %}
+{% if cuenta.number %}
+  <br>Numero de cuenta {{ cuenta.number }}
+{% endif %}
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  {% if create %}Create{% else %}Edit{% endif %} bookmark
+{% endblock %}
+
+{% endblock %}
+
+{% block content %}
+  {% 
+  <form class="form-horizontal" method="POST" action="{% url 'profile_edit' %}">
+        {% csrf_token %}
+        <fieldset>
+        <br>
+        <legend>{% trans "Edit Profile" %}</legend>
+        {{ profile_form.non_field_errors }}
+        {% for field in profile_form %}
+          {{ field.errors }}
+          <div class="form-group">
+            <label class="col-lg-4 control-label" for="id_{{ field.name }}">{% if field.name == profile_form.lastname.name %}{% trans 'first last name:' %} {% else %} {{ field.label_tag }} {% endif %}</label>
+            <div class="col-lg-8" id="container_{{ field.name }}" data-toggle="tooltip" title="{{ field.help_text }}">{{ field }}</div>
+          </div>
+          {% endif %}
+        {% endfor %}
+                                
+        <br>
+        <div class="form_block">
+          <button class="btn btn-primary" type="submit">{% trans "Update" %}</button>
+        </div>
+        <br>
+        <br>
+      </fieldset>
+    </form>
+{% endblock %}
+
